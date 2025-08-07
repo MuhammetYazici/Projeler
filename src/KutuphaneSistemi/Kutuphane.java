@@ -26,13 +26,39 @@ public class Kutuphane {
         }
     }
 
-    public void kitapAl(Kutuphane kitap){
+    public void kitapAl(Kutuphane k){
+        for (int i = 0; i < kutuphane.size(); i++) {
+            if (kutuphane.get(i).getKitapAd().equals(k.getKitapAd()) &&
+                    kutuphane.get(i).getYazar().equals( k.getYazar())){
+                int sayi =kutuphane.get(i).getAdet();
+                sayi--;
+                kutuphane.get(i).setAdet(sayi);
+                if (kutuphane.get(i).getAdet()==0){
+                    kutuphane.remove(i);
+                }else continue;
 
+            }
+        }
     }
 
     public void kitapIadeEt(Kutuphane k){
-        kutuphane.add(k);
-        System.out.println("Kitap İadesi Alındı.");
+        boolean bulundu = false;
+
+        for (int i = 0; i < kutuphane.size(); i++) {
+            if (kutuphane.get(i).getKitapAd().equals(k.getKitapAd()) &&
+                    kutuphane.get(i).getKitapAd().equals(k.getKitapAd())){
+                int sayi = kutuphane.get(i).getAdet();
+                sayi++;
+                kutuphane.get(i).setAdet(sayi);
+                bulundu=true;
+                break;
+            }
+        }
+        if (!bulundu){
+            kutuphane.add(k);
+            k.setAdet(1);
+        }
+        System.out.println("Kitap iadesi alındı.");
     }
 
     public int getAdet() {

@@ -7,9 +7,22 @@ public class Uye extends Kutuphane {
     private String uyeAdSoyad;
     private Set<Kutuphane> uyeKitapListesi = new HashSet<>();
 
+
     public Uye(String kitapAd, String yazar, int adet, String uyeAdSoyad) {
         super(kitapAd, yazar, adet);
         setUyeAdSoyad(uyeAdSoyad);
+    }
+
+
+    public void kitapAl(Kutuphane kutuphane) {
+        super.kitapAl(kutuphane);
+        setUyeKiatapListesi(kutuphane);
+    }
+
+    @Override
+    public void kitapIadeEt(Kutuphane k) {
+        super.kitapIadeEt(k);
+        uyeKitapListesi.remove(k);
     }
 
     public String getUyeAdSoyad() {
@@ -25,10 +38,11 @@ public class Uye extends Kutuphane {
     }
 
     public void setUyeKiatapListesi(Kutuphane uyeKitapListesi) {
-        if (this.uyeKitapListesi.size() <= 3) {
+        if (this.uyeKitapListesi.size() < 3) {
             this.uyeKitapListesi.add(uyeKitapListesi);
+            System.out.println("Kitap verildi.");
         } else {
-            System.out.println("3 kitap almışsınız daha fazla alamazsınız.");
+            System.out.println("3 kitap aldınız daha fazla alamazsınız.");
         }
     }
 }

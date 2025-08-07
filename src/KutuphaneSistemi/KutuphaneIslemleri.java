@@ -2,12 +2,20 @@ package KutuphaneSistemi;
 
 public class KutuphaneIslemleri {
     public static void main(String[] args) {
-        Yonetici k1 = new Yonetici("a","b",6,"muhammet");
+        Kutuphane k1 = new Kutuphane("a","b",10);
+        Kutuphane k2 = new Kutuphane("c","d",7);
+        Uye uye1 = new Uye("v","g",8,"uye1");
+        Kutuphane k3 = new Kutuphane("düşün","asdf",1);
+
         Yonetici.kitapEkle(k1);
-        Yonetici k2 = new Yonetici("b","c",8,"Muahmmet");
         Yonetici.kitapEkle(k2);
-        Yonetici k3 = new Yonetici("d","h",10,"Muhammet");
         Yonetici.kitapEkle(k3);
+        Yonetici.kitapEkle(uye1);
+
+        uye1.kitapAl(uye1);
+        uye1.kitapAl(k3);
+        uye1.kitapAl(k1);
+        uye1.kitapAl(k2);
 
         Kutuphane.kitapListele();
     }
