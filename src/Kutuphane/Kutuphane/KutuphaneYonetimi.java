@@ -1,4 +1,4 @@
-package Kutuphane;
+package Kutuphane.Kutuphane;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +10,10 @@ public class KutuphaneYonetimi {
     private int adet;
     private static List<KutuphaneYonetimi> kutuphane = new ArrayList<>();
 
-    private static int sayac=1;
+    private static int sayac = 1;
 
     public KutuphaneYonetimi() {
-        Id = sayac++;
+        Id = getId();
     }
 
     public KutuphaneYonetimi(String kitapAd, String yazar, int adet) {
@@ -23,60 +23,61 @@ public class KutuphaneYonetimi {
         setAdet(adet);
     }
 
-    public  void kitapEkle(KutuphaneYonetimi k) {
+    public void kitapEkle(KutuphaneYonetimi k) {
         boolean deger = false;
         for (int i = 0; i < kutuphane.size(); i++) {
-            if (kutuphane.get(i).getKitapAd().equals(k.getKitapAd())&&
-            kutuphane.get(i).getYazar().equals(k.getYazar())){
+            if (kutuphane.get(i).getKitapAd().equals(k.getKitapAd()) &&
+                    kutuphane.get(i).getYazar().equals(k.getYazar())) {
                 int sayi = kutuphane.get(i).getAdet();
                 sayi++;
                 kutuphane.get(i).setAdet(sayi);
-                deger=true;
+                deger = true;
                 break;
             }
         }
-        if (!deger){
+        if (!deger) {
             kutuphane.add(k);
         }
         System.out.println("Kitap Eklendi.");
     }
 
-    public  void kitapListele(){
+    public void kitapListele() {
         for (int i = 0; i < kutuphane.size(); i++) {
             System.out.println(kutuphane.get(i));
         }
     }
 
-    public  void kitapAl(KutuphaneYonetimi k){
+    public void kitapAl(KutuphaneYonetimi k) {
         for (int i = 0; i < kutuphane.size(); i++) {
             if (kutuphane.get(i).getKitapAd().equals(k.getKitapAd()) &&
-                    kutuphane.get(i).getYazar().equals( k.getYazar())){
-                if (kutuphane.get(i).getAdet()!=0){
-                int sayi =kutuphane.get(i).getAdet();
-                sayi--;
-                kutuphane.get(i).setAdet(sayi);}
-                else {
+                    kutuphane.get(i).getYazar().equals(k.getYazar())) {
+                if (kutuphane.get(i).getAdet() != 0) {
+                    int sayi = kutuphane.get(i).getAdet();
+                    sayi--;
+                    kutuphane.get(i).setAdet(sayi);
+                } else {
                     kutuphane.remove(i);
+                    System.out.println("Kitap listeden çıkarıldı.");
                 }
 
             }
         }
     }
 
-    public  void kitapIadeEt(KutuphaneYonetimi k){
+    public void kitapIadeEt(KutuphaneYonetimi k) {
         boolean bulundu = false;
 
         for (int i = 0; i < kutuphane.size(); i++) {
             if (kutuphane.get(i).getKitapAd().equals(k.getKitapAd()) &&
-                    kutuphane.get(i).getYazar().equals(k.getYazar())){
+                    kutuphane.get(i).getYazar().equals(k.getYazar())) {
                 int sayi = kutuphane.get(i).getAdet();
                 sayi++;
                 kutuphane.get(i).setAdet(sayi);
-                bulundu=true;
+                bulundu = true;
                 break;
             }
         }
-        if (!bulundu){
+        if (!bulundu) {
             kutuphane.add(k);
             k.setAdet(1);
         }

@@ -1,11 +1,11 @@
-package Kutuphane;
+package Kutuphane.Kutuphane;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class Uye extends Kisi {
     private Set<KutuphaneYonetimi> uyeKitapListesi = new HashSet<>();
-    private KutuphaneYonetimi kutuphaneYonetimi=new KutuphaneYonetimi();
+    private KutuphaneYonetimi kutuphaneYonetimi = new KutuphaneYonetimi();
 
     public Uye(String name, String id) {
         super(name, id);

@@ -1,4 +1,4 @@
-package Kutuphane;
+package Kutuphane.Kutuphane.Kutuphane;
 
 public class Yonetici extends Kisi{
     KutuphaneYonetimi kutuphaneYonetimi = new KutuphaneYonetimi();
