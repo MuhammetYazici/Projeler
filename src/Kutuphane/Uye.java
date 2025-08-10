@@ -12,15 +12,20 @@ public class Uye extends Kisi {
     }
 
     public void kitapAl(KutuphaneYonetimi kitap) {
-        if (kutuphaneYonetimi.contains(kitap)){
+
+        if (uyeKitapListesi.contains(kitap)) {
             System.out.println("bu kitaptan elinizde var.");
-        }else{
-            if (uyeKitapListesi.size()<3){
+
+        } else {
+            if (uyeKitapListesi.size() < 3) {
                 uyeKitapListesi.add(kitap);
                 kutuphaneYonetimi.kitapAl(kitap);
                 System.out.println("kitap Eklendi.");
-            }else
+
+            } else {
                 System.out.println("Listeniz dolu, yeni kitap alamazsınız.");
+
+            }
         }
     }
 

@@ -2,6 +2,7 @@ package Kutuphane;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class KutuphaneYonetimi {
     private final int Id;
@@ -122,8 +123,19 @@ public class KutuphaneYonetimi {
                 '}';
     }
 
-    public boolean
-    contains(KutuphaneYonetimi kitap){
-        return true;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        KutuphaneYonetimi that = (KutuphaneYonetimi) o;
+        return Objects.equals(kitapAd, that.kitapAd) &&
+                Objects.equals(yazar, that.yazar);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(kitapAd, yazar);
+    }
+
+
 }
