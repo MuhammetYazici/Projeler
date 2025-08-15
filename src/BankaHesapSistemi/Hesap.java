@@ -7,13 +7,25 @@ public class Hesap {
 
     private static int sayac=1000;
 
-    public Hesap(int hesapNo) {
-        this.hesapNo=getHesapNo();
-    }
-
-    public Hesap(int hesapNo, double bakiye) {
+    public Hesap(double bakiye) {
         this.hesapNo = sayac++;
         setBakiye(bakiye);
+    }
+
+    public void paraYatir(double miktar){
+        setBakiye(getBakiye()+miktar);
+        System.out.println("Para Hesabınıza Yatırıldı.");
+        System.out.println("Bakiyeniz : " + getBakiye());
+    }
+
+    public void paraCek(double miktar){
+        setBakiye(getBakiye()-miktar);
+        System.out.println("Hesabınızdan "+miktar+" Para Çekildi.");
+        System.out.println("Bakiyeniz : " + getBakiye());
+    }
+
+    public void bakiyeGoster(){
+        System.out.println("Bakiyeniz : " + getBakiye());
     }
 
     public int getHesapNo() {
