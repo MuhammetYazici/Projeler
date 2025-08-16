@@ -39,4 +39,12 @@ public class Hesap {
     public void setBakiye(double bakiye) {
         this.bakiye = bakiye;
     }
+
+    @Override
+    public String toString() {
+        return "Hesap{" +
+                "hesapNo =" + hesapNo +
+                ", bakiye =" + bakiye +" ,"
+                ;
+    }
 }
