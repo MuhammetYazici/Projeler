@@ -12,18 +12,9 @@ public class BankaMain {
         m2.hesapAc(20000);
         m2.hesapAc(15000);
         m2.hesapAc(6000);
-        m2.hesaplariGoster();
-
-        Hesap hesap1 = new Hesap(100000);
-        hesap1.paraCek(10000);
-        hesap1.paraYatir(40000);
-        hesap1.bakiyeGoster();
 
         Banka banka1 = new Banka();
         banka1.MusteriEkle(m);
         banka1.MusteriEkle(m2);
-        banka1.MusterileriGoster();
-        banka1.musteriSil(m2);
-        banka1.MusterileriGoster();
     }
 }
