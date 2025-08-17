@@ -7,7 +7,7 @@ public class Musteri {
     private final int id;
     private String ad;
     private String soyad;
-    private ArrayList<Hesap> hesapListesi = new ArrayList<>();
+    ArrayList<Hesap> hesapListesi = new ArrayList<>();
     private Scanner oku = new Scanner(System.in);
 
 
