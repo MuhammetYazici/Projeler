@@ -77,6 +77,7 @@ public class Banka {
                                 break;
                             } else {
                                 System.out.println("Gönderilecek Hesap Numarası Yanlış.");
+                                musteriListesi.get(i).hesapListesi.get(j).paraYatir(miktar);
                                 break;
                             }
                         }
@@ -106,6 +107,7 @@ public class Banka {
                     }
                 } else {
                     System.out.println("Gönderici Hesap Numarası Yanlış.");
+                    musteriListesi.get(i).hesapListesi.get(j).paraYatir(miktar);
                     break;
                 }
             }
