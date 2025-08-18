@@ -18,10 +18,13 @@ public class Hesap {
         System.out.println("Bakiyeniz : " + getBakiye());
     }
 
-    public void paraCek(double miktar){
-        setBakiye(getBakiye()-miktar);
-        System.out.println("Hesabınızdan "+miktar+" Para Çekildi.");
-        System.out.println("Bakiyeniz : " + getBakiye());
+    public void paraCek(double miktar) {
+        if (miktar > getBakiye()) {
+            setBakiye(getBakiye() - miktar);
+            System.out.println("Hesabınızdan " + miktar + " TL Para Çekildi.");
+            System.out.println("Bakiyeniz : " + getBakiye());
+        }else
+            System.out.println("Bakiyeniz Yetersiz.");
     }
 
     public void bakiyeGoster(){
