@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 public class UrunStokTakipSistemi {
+
     public static void main(String[] args) {
 
         TreeMap<String, TreeMap<String, Integer>> urunBilgisi = new TreeMap<>();
