@@ -1,9 +1,6 @@
 package UrunStokTakipSistemi;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class UrunData {
     private  int id;
@@ -11,8 +8,8 @@ public class UrunData {
     private int stok;
     private int fiyat;
     private kategoriler tur;
-    private List<UrunData> urunBilgileri = new ArrayList<>();
-    private Map<kategoriler,UrunData> kategoriListesi = new HashMap<>();
+    Set<UrunData> urunBilgileri = new HashSet<>();
+
 
     private static int sayac=1;
 
@@ -25,6 +22,14 @@ public class UrunData {
         setStok(stok);
         setFiyat(fiyat);
         setTur(tur);
+    }
+
+    public void setId(int id) {
+        if (sayac>id){
+            this.id=sayac--;
+        } else if (sayac<=id) {
+            System.out.println("HATALI");
+        }
     }
 
     public int getId() {
@@ -64,15 +69,26 @@ public class UrunData {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UrunData)) return false;
+        UrunData urun = (UrunData) o;
+        return id == urun.id && ad.equalsIgnoreCase(urun.ad);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, ad.toLowerCase());
+    }
+
+    @Override
     public String toString() {
-        return "UrunData{" +
-                "id=" + id +
+        return
+                "* id=" + id +
                 ", ad='" + ad + '\'' +
                 ", stok=" + stok +
                 ", fiyat=" + fiyat +
-                ", tur='" + tur + '\'' +
-                ", urunBilgileri=" + urunBilgileri +
-                ", kategoriListesi=" + kategoriListesi +
-                '}';
+                ", tur='" + tur + '\'' +' '+
+                '*';
     }
 }
