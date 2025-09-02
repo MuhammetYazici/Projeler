@@ -6,9 +6,10 @@ public class UrunData {
     private  int id;
     private String ad;
     private int stok;
-    private int fiyat;
-    private kategoriler tur;
+    private double fiyat;
+    private kategorilerEnum tur;
     Set<UrunData> urunBilgileri = new HashSet<>();
+    Map<kategorilerEnum,List> kategoriler = new HashMap<>();
 
 
     private static int sayac=1;
@@ -16,7 +17,7 @@ public class UrunData {
     public UrunData() {
     }
 
-    public UrunData(String ad, int stok, int fiyat, kategoriler tur) {
+    public UrunData(String ad, int stok, double fiyat, kategorilerEnum tur) {
         this.id = sayac++;
         setAd(ad);
         setStok(stok);
@@ -52,19 +53,19 @@ public class UrunData {
         this.stok = stok;
     }
 
-    public int getFiyat() {
+    public double getFiyat() {
         return fiyat;
     }
 
-    public void setFiyat(int fiyat) {
+    public void setFiyat(double fiyat) {
         this.fiyat = fiyat;
     }
 
-    public kategoriler getTur() {
+    public kategorilerEnum getTur() {
         return tur;
     }
 
-    public void setTur(kategoriler tur) {
+    public void setTur(kategorilerEnum tur) {
         this.tur = tur;
     }
 
@@ -80,6 +81,7 @@ public class UrunData {
     public int hashCode() {
         return Objects.hash(id, ad.toLowerCase());
     }
+
 
     @Override
     public String toString() {
