@@ -1,31 +1,37 @@
 package UrunStokTakipSistemi;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
-public class UrunIslemler extends UrunData {
-    Scanner oku = new Scanner(System.in);
+import static UrunStokTakipSistemi.UrunData.kategoriler;
+
+
+public class UrunIslemler {
+    UrunData urda = new UrunData();
+    List<UrunData> listGida = new ArrayList<>();
+    List<UrunData> listGiyim = new ArrayList<>();
+    List<UrunData> listElektronik = new ArrayList<>();
+    List<UrunData> listTemizlik = new ArrayList<>();
+    List<UrunData> listKozmeik = new ArrayList<>();
 
 
     public void urunEkle(String ad, int stok, double fiyat, kategorilerEnum tur) {
         if (!urunBul(ad)) {
             UrunData urunData = new UrunData(ad, stok, fiyat, tur);
-            urunBilgileri.add(urunData);
+            urda.urunBilgileri.add(urunData);
+            kategoriUrunEkle(urunData);
             System.out.println(ad.toUpperCase() + " Listeye Eklendi.");
         } else
             System.out.println("Bu Ürün Listede Bulunmaktadır." +
                     "Ürün Bilgilerini Değiştirmek İçin Güncelleme Butonlarına Tıklayınız.");
 
-        kategoriUrunEkle();
     }
 
     public void urunSil(String ad) {
         if (urunBul(ad)) {
-            for (UrunData ud : urunBilgileri) {
+            for (UrunData ud : urda.urunBilgileri) {
                 if (ud.getAd().equalsIgnoreCase(ad)) {
-                    urunBilgileri.remove(ud);
-                    ud.setId(getId()-1);
+                    urda.urunBilgileri.remove(ud);
+                    ud.setId(urda.getId() - 1);
                     System.out.println(ad.toUpperCase() + " Listeden Silindi.");
                     break;
                 }
@@ -37,13 +43,13 @@ public class UrunIslemler extends UrunData {
 
     public void urunGuncelle(String ad, int yeniStok, double yeniFiyat) {
         if (urunBul(ad)) {
-            for (UrunData ud : urunBilgileri) {
+            for (UrunData ud : urda.urunBilgileri) {
                 ud.setStok(yeniStok);
                 ud.setFiyat(yeniFiyat);
-                System.out.println(ad.toUpperCase()+" Ürünü Stok ve Fiyat Bilgileri Güncellendi.");
+                System.out.println(ad.toUpperCase() + " Ürünü Stok ve Fiyat Bilgileri Güncellendi.");
                 break;
             }
-        }else {
+        } else {
             System.out.println("Listede " + ad.toUpperCase() + " Adında Bir Ürün Bulunmamaktadır.");
         }
     }
@@ -52,60 +58,92 @@ public class UrunIslemler extends UrunData {
         System.out.println("********** URUN BİLGİLERİ **********");
         List<UrunData> urunData = new ArrayList<>();
 
-        for (UrunData ud : urunBilgileri){
+        for (UrunData ud : urda.urunBilgileri) {
             urunData.add(ud);
         }
 
-        for (int i = urunData.size()-1; i >= 0; i--) {
+        for (int i = urunData.size() - 1; i >= 0; i--) {
             System.out.println(urunData.get(i));
         }
     }
 
-    public void urunRapor() {
-        int toplamStok = 0;
-        double toplamFiyat=0;
-
-        for (UrunData ud : urunBilgileri){
-            toplamStok = toplamStok += ud.getStok();
-            toplamFiyat = toplamFiyat += ud.getFiyat();
-        }
-
-        System.out.println("Toplam Fiyat = " + toplamFiyat);
-        System.out.println("Toplam Stok = " + toplamStok);
+    public void urunRapor(String ad) {
+        if (urunBul(ad)) {
+            for (UrunData ud : urda.urunBilgileri) {
+                if (ud.getAd().equalsIgnoreCase(ad)) {
+                    System.out.println(ad.toUpperCase() + " Stok Miktarı : " + ud.getStok());
+                    System.out.println(ad.toUpperCase() + " Beklenen Kazanç : " + ud.getStok() * ud.getFiyat());
+                    break;
+                }
+            }
+        } else
+            System.out.println(ad + " adında bir ürün bulunamadı.");
     }
 
-    void kategoriUrunEkle(){
-        List<UrunData> listGida = new ArrayList<>();
-        List<UrunData> listGiyim = new ArrayList<>();
-        List<UrunData> listElektronik = new ArrayList<>();
-        List<UrunData> listTemizlik = new ArrayList<>();
-        List<UrunData> listKozmeik = new ArrayList<>();
+    private void kategoriUrunEkle(UrunData ud) {
 
-        for (UrunData ud : urunBilgileri){
-            switch (ud.getTur()){
+        switch (ud.getTur()) {
+            case GIDA:
+                listGida.add(ud);
+                kategoriler.put(kategorilerEnum.GIDA, listGida);
+                break;
+            case GIYIM:
+                listGiyim.add(ud);
+                kategoriler.put(kategorilerEnum.GIYIM, listGiyim);
+                break;
+            case KOZMETIK:
+                listKozmeik.add(ud);
+                kategoriler.put(kategorilerEnum.KOZMETIK, listKozmeik);
+                break;
+            case TEMIZLIK:
+                listTemizlik.add(ud);
+                kategoriler.put(kategorilerEnum.TEMIZLIK, listTemizlik);
+                break;
+            case ELEKTRONIK:
+                listElektronik.add(ud);
+                kategoriler.put(kategorilerEnum.ELEKTRONIK, listElektronik);
+                break;
+        }
+    }
+
+
+    void kategoriUrunSil() {
+
+    }
+
+    public static void kategoriListele() {
+        for (Map.Entry<kategorilerEnum,List> k: kategoriler.entrySet()){
+            switch (k.getKey()){
                 case GIDA :
-                    listGida.add(ud);
-                    kategoriler.put(kategorilerEnum.GIDA,listGida); break;
-                case GIYIM :
-                    listGiyim.add(ud);
-                    kategoriler.put(kategorilerEnum.GIDA,listGiyim); break;
+                    System.out.println("-------  GIDA  -------");
+                    System.out.println(k.getValue());
+                    continue;
+                case GIYIM:
+                    System.out.println("-------  GİYİM  -------");
+                    System.out.println(k.getValue());
+                    continue;
                 case KOZMETIK:
-                    listKozmeik.add(ud);
-                    kategoriler.put(kategorilerEnum.KOZMETIK,listKozmeik);break;
+                    System.out.println("-------  KOZMETİK  -------");
+                    System.out.println(k.getValue());
+                    continue;
                 case TEMIZLIK:
-                    listTemizlik.add(ud);
-                    kategoriler.put(kategorilerEnum.TEMIZLIK,listTemizlik);break;
+                    System.out.println("-------  TEMİZLİK  -------");
+                    System.out.println(k.getValue());
+                    continue;
                 case ELEKTRONIK:
-                    listElektronik.add(ud);
-                    kategoriler.put(kategorilerEnum.ELEKTRONIK,listElektronik);break;
+                    System.out.println("-------  ELEKTRONIK  -------");
+                    System.out.println(k.getValue());
+
+                    continue;
+
             }
         }
     }
 
 
-     boolean urunBul(String ad) {
+    boolean urunBul(String ad) {
         boolean deger = false;
-        for (UrunData ud : urunBilgileri) {
+        for (UrunData ud : urda.urunBilgileri) {
             if (ud.getAd().equalsIgnoreCase(ad)) {
                 deger = true;
                 break;

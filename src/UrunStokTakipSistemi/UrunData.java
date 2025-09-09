@@ -9,7 +9,7 @@ public class UrunData {
     private double fiyat;
     private kategorilerEnum tur;
     Set<UrunData> urunBilgileri = new HashSet<>();
-    Map<kategorilerEnum,List> kategoriler = new HashMap<>();
+    static Map<kategorilerEnum,List> kategoriler = new HashMap<>();
 
 
     private static int sayac=1;
