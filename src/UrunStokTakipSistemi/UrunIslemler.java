@@ -5,7 +5,7 @@ import java.util.*;
 import static UrunStokTakipSistemi.UrunData.kategoriler;
 
 
-public class UrunIslemler {
+public  class UrunIslemler {
     UrunData urda = new UrunData();
     List<UrunData> listGida = new ArrayList<>();
     List<UrunData> listGiyim = new ArrayList<>();
@@ -31,7 +31,7 @@ public class UrunIslemler {
             for (UrunData ud : urda.urunBilgileri) {
                 if (ud.getAd().equalsIgnoreCase(ad)) {
                     urda.urunBilgileri.remove(ud);
-                    ud.setId(urda.getId() - 1);
+                    kategoriUrunSil(ad);
                     System.out.println(ad.toUpperCase() + " Listeden Silindi.");
                     break;
                 }
@@ -44,10 +44,13 @@ public class UrunIslemler {
     public void urunGuncelle(String ad, int yeniStok, double yeniFiyat) {
         if (urunBul(ad)) {
             for (UrunData ud : urda.urunBilgileri) {
+                if (ud.getAd().equalsIgnoreCase(ad)){
                 ud.setStok(yeniStok);
                 ud.setFiyat(yeniFiyat);
+                kategoriUruNGuncelle(ad,yeniStok,yeniFiyat);
                 System.out.println(ad.toUpperCase() + " Ürünü Stok ve Fiyat Bilgileri Güncellendi.");
                 break;
+                }
             }
         } else {
             System.out.println("Listede " + ad.toUpperCase() + " Adında Bir Ürün Bulunmamaktadır.");
@@ -106,36 +109,28 @@ public class UrunIslemler {
         }
     }
 
+    static void kategoriUruNGuncelle(String ad, int yeniStok, double yeniFiyat){
+        for (Map.Entry<kategorilerEnum,List<UrunData>> k : kategoriler.entrySet()){
+            for (UrunData urun : k.getValue()){
+                if (urun.getAd().equalsIgnoreCase(ad)){
+                    urun.setStok(yeniStok);
+                    urun.setFiyat(yeniFiyat);
+                }
+            }
+        }
+    }
 
-    void kategoriUrunSil() {
-
+    static void kategoriUrunSil(String ad) {
+        for (Map.Entry<kategorilerEnum, List<UrunData>> k : kategoriler.entrySet()) {
+            k.getValue().removeIf(urun -> urun.getAd().equalsIgnoreCase(ad));
+        }
     }
 
     public static void kategoriListele() {
-        for (Map.Entry<kategorilerEnum,List> k: kategoriler.entrySet()){
-            switch (k.getKey()){
-                case GIDA :
-                    System.out.println("-------  GIDA  -------");
-                    System.out.println(k.getValue());
-                    continue;
-                case GIYIM:
-                    System.out.println("-------  GİYİM  -------");
-                    System.out.println(k.getValue());
-                    continue;
-                case KOZMETIK:
-                    System.out.println("-------  KOZMETİK  -------");
-                    System.out.println(k.getValue());
-                    continue;
-                case TEMIZLIK:
-                    System.out.println("-------  TEMİZLİK  -------");
-                    System.out.println(k.getValue());
-                    continue;
-                case ELEKTRONIK:
-                    System.out.println("-------  ELEKTRONIK  -------");
-                    System.out.println(k.getValue());
-
-                    continue;
-
+        for (Map.Entry<kategorilerEnum,List<UrunData>> k: kategoriler.entrySet()){
+            System.out.println("-------  "+k.getKey()+"  -------");
+            for (UrunData urun : k.getValue()){
+                System.out.println(urun);
             }
         }
     }

@@ -3,34 +3,30 @@ package UrunStokTakipSistemi;
 import java.util.*;
 
 public class UrunData {
-    private  int id;
+    private int id;
     private String ad;
     private int stok;
     private double fiyat;
     private kategorilerEnum tur;
-    Set<UrunData> urunBilgileri = new HashSet<>();
-    static Map<kategorilerEnum,List> kategoriler = new HashMap<>();
+    static Set<UrunData> urunBilgileri = new HashSet<>();
+    static Map<kategorilerEnum, List<UrunData>> kategoriler = new HashMap<>();
 
 
-    private static int sayac=1;
+    private static int sayac = 1;
 
     public UrunData() {
     }
 
     public UrunData(String ad, int stok, double fiyat, kategorilerEnum tur) {
-        this.id = sayac++;
+        setId();
         setAd(ad);
         setStok(stok);
         setFiyat(fiyat);
         setTur(tur);
     }
 
-    public void setId(int id) {
-        if (sayac>id){
-            this.id=sayac--;
-        } else if (sayac<=id) {
-            System.out.println("HATALI");
-        }
+    private void setId() {
+        this.id=sayac++;
     }
 
     public int getId() {
@@ -86,11 +82,10 @@ public class UrunData {
     @Override
     public String toString() {
         return
-                "* id=" + id +
-                ", ad='" + ad + '\'' +
-                ", stok=" + stok +
-                ", fiyat=" + fiyat +
-                ", tur='" + tur + '\'' +' '+
-                '*';
+                "[ id=" + id +
+                        ", ad='" + ad + '\'' +
+                        ", stok=" + stok +
+                        ", fiyat=" + fiyat +
+                        ", tur='" + tur + "' ]";
     }
 }
