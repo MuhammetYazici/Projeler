@@ -14,7 +14,7 @@ public  class UrunIslemler {
     List<UrunData> listKozmeik = new ArrayList<>();
 
 
-    public void urunEkle(String ad, int stok, double fiyat, kategorilerEnum tur) {
+    public void urunEkle(String ad, int stok, double fiyat, Kategori tur) {
         if (!urunBul(ad)) {
             UrunData urunData = new UrunData(ad, stok, fiyat, tur);
             urda.urunBilgileri.add(urunData);
@@ -88,29 +88,29 @@ public  class UrunIslemler {
         switch (ud.getTur()) {
             case GIDA:
                 listGida.add(ud);
-                kategoriler.put(kategorilerEnum.GIDA, listGida);
+                kategoriler.put(Kategori.GIDA, listGida);
                 break;
             case GIYIM:
                 listGiyim.add(ud);
-                kategoriler.put(kategorilerEnum.GIYIM, listGiyim);
+                kategoriler.put(Kategori.GIYIM, listGiyim);
                 break;
             case KOZMETIK:
                 listKozmeik.add(ud);
-                kategoriler.put(kategorilerEnum.KOZMETIK, listKozmeik);
+                kategoriler.put(Kategori.KOZMETIK, listKozmeik);
                 break;
             case TEMIZLIK:
                 listTemizlik.add(ud);
-                kategoriler.put(kategorilerEnum.TEMIZLIK, listTemizlik);
+                kategoriler.put(Kategori.TEMIZLIK, listTemizlik);
                 break;
             case ELEKTRONIK:
                 listElektronik.add(ud);
-                kategoriler.put(kategorilerEnum.ELEKTRONIK, listElektronik);
+                kategoriler.put(Kategori.ELEKTRONIK, listElektronik);
                 break;
         }
     }
 
     static void kategoriUruNGuncelle(String ad, int yeniStok, double yeniFiyat){
-        for (Map.Entry<kategorilerEnum,List<UrunData>> k : kategoriler.entrySet()){
+        for (Map.Entry<Kategori,List<UrunData>> k : kategoriler.entrySet()){
             for (UrunData urun : k.getValue()){
                 if (urun.getAd().equalsIgnoreCase(ad)){
                     urun.setStok(yeniStok);
@@ -121,13 +121,13 @@ public  class UrunIslemler {
     }
 
     static void kategoriUrunSil(String ad) {
-        for (Map.Entry<kategorilerEnum, List<UrunData>> k : kategoriler.entrySet()) {
+        for (Map.Entry<Kategori, List<UrunData>> k : kategoriler.entrySet()) {
             k.getValue().removeIf(urun -> urun.getAd().equalsIgnoreCase(ad));
         }
     }
 
     public static void kategoriListele() {
-        for (Map.Entry<kategorilerEnum,List<UrunData>> k: kategoriler.entrySet()){
+        for (Map.Entry<Kategori,List<UrunData>> k: kategoriler.entrySet()){
             System.out.println("-------  "+k.getKey()+"  -------");
             for (UrunData urun : k.getValue()){
                 System.out.println(urun);

@@ -1,5 +1,5 @@
 package UrunStokTakipSistemi;
 
-public enum kategorilerEnum {
+public enum Kategori {
     ELEKTRONIK,GIDA,GIYIM,TEMIZLIK,KOZMETIK
 }

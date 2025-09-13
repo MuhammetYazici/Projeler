@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        kategorilerEnum secilenKategoriler = null;
+        Kategori secilenKategoriler = null;
         UrunData urunData = new UrunData();
         UrunIslemler urunIslemler = new UrunIslemler();
         Scanner oku = new Scanner(System.in);
@@ -51,19 +51,19 @@ public class Main {
 
                     switch (sayi) {
                         case 1:
-                            secilenKategoriler = kategorilerEnum.GIDA;
+                            secilenKategoriler = Kategori.GIDA;
                             break;
                         case 2:
-                            secilenKategoriler = kategorilerEnum.GIYIM;
+                            secilenKategoriler = Kategori.GIYIM;
                             break;
                         case 3:
-                            secilenKategoriler = kategorilerEnum.KOZMETIK;
+                            secilenKategoriler = Kategori.KOZMETIK;
                             break;
                         case 4:
-                            secilenKategoriler = kategorilerEnum.TEMIZLIK;
+                            secilenKategoriler = Kategori.TEMIZLIK;
                             break;
                         case 5:
-                            secilenKategoriler = kategorilerEnum.ELEKTRONIK;
+                            secilenKategoriler = Kategori.ELEKTRONIK;
                             break;
                         default:
                             System.out.println("Geçersiz Seçim Yaptınız!");
@@ -113,7 +113,7 @@ public class Main {
             }
 
 
-        } while (secim != 6);
+        } while (secim != 6 && secim >0 && secim<7);
 
     }
 }

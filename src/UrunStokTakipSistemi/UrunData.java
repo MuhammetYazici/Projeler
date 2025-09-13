@@ -7,9 +7,9 @@ public class UrunData {
     private String ad;
     private int stok;
     private double fiyat;
-    private kategorilerEnum tur;
+    private Kategori tur;
     static Set<UrunData> urunBilgileri = new HashSet<>();
-    static Map<kategorilerEnum, List<UrunData>> kategoriler = new HashMap<>();
+    static Map<Kategori, List<UrunData>> kategoriler = new HashMap<>();
 
 
     private static int sayac = 1;
@@ -17,7 +17,7 @@ public class UrunData {
     public UrunData() {
     }
 
-    public UrunData(String ad, int stok, double fiyat, kategorilerEnum tur) {
+    public UrunData(String ad, int stok, double fiyat, Kategori tur) {
         setId();
         setAd(ad);
         setStok(stok);
@@ -57,11 +57,11 @@ public class UrunData {
         this.fiyat = fiyat;
     }
 
-    public kategorilerEnum getTur() {
+    public Kategori getTur() {
         return tur;
     }
 
-    public void setTur(kategorilerEnum tur) {
+    public void setTur(Kategori tur) {
         this.tur = tur;
     }
 
