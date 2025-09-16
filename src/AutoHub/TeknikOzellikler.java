@@ -27,9 +27,9 @@ public class TeknikOzellikler extends Arac{
             , double ortalamaYakit, int depoHacmi, int HP, int tork
             , String sanziman, double hizlanma, int azamiSurat
             , int motorHacmi, int uzunluk, int genislik, int yukseklik
-            , int netAgirlik, int bagajHacmi, String lastikOlculeri) {
+            , int netAgirlik, int bagajHacmi, String lastikOlculeri,String sehir) {
 
-        super(ilanNo, marka, model, seri, yil, fiyat, durum, km, yakit, vites, kasaTipi, renk, garanti, hasarKaydi, takas, kapiSayisi);
+        super(ilanNo, marka, model, seri, yil, fiyat, durum, km, yakit, vites, kasaTipi, renk, garanti, hasarKaydi, takas, kapiSayisi,sehir);
         setSegment(segment);
         setSehirIciYakit(sehirIciYakit);
         setSehirDisiYakit(sehirDisiYakit);

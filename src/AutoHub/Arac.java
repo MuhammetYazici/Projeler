@@ -1,5 +1,7 @@
 package AutoHub;
 
+import java.util.Scanner;
+
 public class Arac {
     private int ilanNo;
     private String marka;
@@ -17,12 +19,19 @@ public class Arac {
     private String hasarKaydi;
     private String takas;
     private int kapiSayisi;
+    private String sehir;
+
+    String parcalarStr = "1-Kaput\n2-Tavan\n3-Bagaj Kapağı\n4-Sağ Ön Çamurluk\n" +
+            "5-Sağ Ön Kapı\n6-Sağ Arka Kapı\n7-Sağ Arka Çamurluk\n" +
+            "8-Sol Ön Çamurluk\n9-Sol Ön Kapı\n10-Sol Arka Kapı\n11-Sol Arka Çamurluk";
+
+    Scanner oku = new Scanner(System.in);
 
     public Arac(int ilanNo, String marka, String model, String seri
             , int yil, double fiyat, String durum
             , int km, String yakit, String vites, String kasaTipi
             , String renk, String garanti
-            , String hasarKaydi, String takas, int kapiSayisi) {
+            , String hasarKaydi, String takas, int kapiSayisi,String sehir) {
 
         setIlanNo(ilanNo);
         setMarka(marka);
@@ -40,6 +49,7 @@ public class Arac {
         setHasarKaydi(hasarKaydi);
         setTakas(takas);
         setKapiSayisi(kapiSayisi);
+        setSehir(sehir);
     }
 
     public String getMarka() {
@@ -168,6 +178,52 @@ public class Arac {
 
     public void setKapiSayisi(int kapiSayisi) {
         this.kapiSayisi = kapiSayisi;
+    }
+
+    public String getSehir() {
+        return sehir;
+    }
+
+    public void setSehir(String sehir) {
+        this.sehir = sehir;
+    }
+
+    public void boyaBilgisiGiris(int boyaliParcaSayisi){
+        Enum[] dizi = new Enum[boyaliParcaSayisi];
+        if (boyaliParcaSayisi != 0 && boyaliParcaSayisi > 0){
+            System.out.println(parcalarStr);
+            for (int i = 0; i < boyaliParcaSayisi; i++) {
+                System.out.print("Boyalı Parça Giriniz : ");
+                int sayi = oku.nextInt();
+                switch (sayi){
+                    case 1: dizi[i]=Parcalar.KAPUT; break;
+                    case 2: dizi[i]=Parcalar.TAVAN; break;
+                    case 3: dizi[i]=Parcalar.BAGAJ; break;
+                    case 4: dizi[i]=Parcalar.SAGONCAMURLUK; break;
+                    case 5: dizi[i]=Parcalar.SAGONKAPI; break;
+                    case 6: dizi[i]=Parcalar.SAGARKAKAPI; break;
+                    case 7: dizi[i]=Parcalar.SAGARKACAMURLUK; break;
+                    case 8: dizi[i]=Parcalar.SOLONCAMURLUK; break;
+                    case 9: dizi[i]=Parcalar.SOLONKAPI; break;
+                    case 10:dizi[i]=Parcalar.SOLARKAKAPI; break;
+                    case 11:dizi[i]=Parcalar.SOLARKACAMURLUK; break;
+                    default:
+                        System.out.println("Yanlış Değer Girdiniz!");
+                        i--;
+                        break;
+                }
+            }
+        } else if (boyaliParcaSayisi == 0) {
+            System.out.println("Araçta Boyalı Parça Bulunmamaktadır.");
+        }else
+            System.out.println("Hatalı Değer Girdiniz!");
+
+
+        for (int i = 0; i < dizi.length; i++) {
+            String kelime = dizi[i].name();
+            System.out.println(kelime);
+        }
+
     }
 
     public void filtrele(){
