@@ -1,7 +1,11 @@
 package AutoHub;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MinivanPanelvan extends TeknikOzellikler{
 
+    List<TeknikOzellikler> minivanPanelvan = new ArrayList<>();
 
     public MinivanPanelvan(int ilanNo, String marka, String model, String seri
             , int yil, double fiyat, String durum, int km, String yakit
@@ -10,12 +14,12 @@ public class MinivanPanelvan extends TeknikOzellikler{
             , double sehirIciYakit, double sehirDisiYakit, double ortalamaYakit
             , int depoHacmi, int HP, int tork, String sanziman, double hizlanma
             , int azamiSurat, int motorHacmi, int uzunluk, int genislik, int yukseklik
-            , int netAgirlik, int bagajHacmi, String lastikOlculeri,String sehir) {
+            , int netAgirlik, int bagajHacmi, String lastikOlculeri,String sehir,int motorGucu) {
         super(ilanNo, marka, model, seri, yil, fiyat, durum, km, yakit, vites
                 , kasaTipi, renk, garanti, hasarKaydi, takas, kapiSayisi, segment
                 , sehirIciYakit, sehirDisiYakit, ortalamaYakit, depoHacmi, HP, tork
                 , sanziman, hizlanma, azamiSurat, motorHacmi, uzunluk, genislik
-                , yukseklik, netAgirlik, bagajHacmi, lastikOlculeri,sehir );
+                , yukseklik, netAgirlik, bagajHacmi, lastikOlculeri,sehir ,motorGucu);
     }
 }
 

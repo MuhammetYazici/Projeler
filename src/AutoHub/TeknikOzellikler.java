@@ -11,7 +11,6 @@ public class TeknikOzellikler extends Arac{
     private String sanziman;
     private double hizlanma;
     private int azamiSurat;
-    private int motorHacmi;
     private int uzunluk;
     private int genislik;
     private int yukseklik;
@@ -27,9 +26,9 @@ public class TeknikOzellikler extends Arac{
             , double ortalamaYakit, int depoHacmi, int HP, int tork
             , String sanziman, double hizlanma, int azamiSurat
             , int motorHacmi, int uzunluk, int genislik, int yukseklik
-            , int netAgirlik, int bagajHacmi, String lastikOlculeri,String sehir) {
+            , int netAgirlik, int bagajHacmi, String lastikOlculeri,String sehir,int motorGucu) {
 
-        super(ilanNo, marka, model, seri, yil, fiyat, durum, km, yakit, vites, kasaTipi, renk, garanti, hasarKaydi, takas, kapiSayisi,sehir);
+        super(ilanNo, marka, model, seri, yil, fiyat, durum, km, yakit, vites, kasaTipi, renk, garanti, hasarKaydi, takas, kapiSayisi,sehir,motorHacmi,motorGucu);
         setSegment(segment);
         setSehirIciYakit(sehirIciYakit);
         setSehirDisiYakit(sehirDisiYakit);
@@ -40,7 +39,6 @@ public class TeknikOzellikler extends Arac{
         setSanziman(sanziman);
         setHizlanma(hizlanma);
         setAzamiSurat(azamiSurat);
-        setMotorHacmi(motorHacmi);
         setUzunluk(uzunluk);
         setGenislik(genislik);
         setYukseklik(yukseklik);
@@ -129,13 +127,6 @@ public class TeknikOzellikler extends Arac{
         this.azamiSurat = azamiSurat;
     }
 
-    public int getMotorHacmi() {
-        return motorHacmi;
-    }
-
-    public void setMotorHacmi(int motorHacmi) {
-        this.motorHacmi = motorHacmi;
-    }
 
     public int getUzunluk() {
         return uzunluk;
